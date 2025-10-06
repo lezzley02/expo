@@ -51,7 +51,6 @@ const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
 const AnsiHighlight_1 = require("../AnsiHighlight");
 const devServerEndpoints_1 = require("../devServerEndpoints");
-//@ts-expect-error unexpected css import by ts
 const ErrorCodeFrame_module_css_1 = __importDefault(require("./ErrorCodeFrame.module.css"));
 function ErrorCodeFrame({ projectRoot, codeFrame, }) {
     if (codeFrame == null) {

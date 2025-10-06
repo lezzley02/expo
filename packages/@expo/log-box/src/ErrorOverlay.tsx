@@ -16,9 +16,8 @@ import { StackTraceList } from './overlay/StackTraceList';
 
 import type { Message } from './Data/parseLogBoxLog';
 import { fetchProjectMetadataAsync, getFormattedStackTrace } from './devServerEndpoints';
-// @ts-ignore TODO: add ts css plugin
+
 import './ErrorGlobal.css';
-// @ts-ignore TODO: add ts css plugin
 import styles from './ErrorOverlay.module.css';
 
 import { LogBoxMessage } from './LogBoxMessage';

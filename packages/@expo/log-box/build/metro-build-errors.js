@@ -153,6 +153,7 @@ class MetroPackageResolutionError extends MetroBuildError {
     }
     toLogBoxLogData() {
         const babelCodeFrameError = this.ansiError.match(BABEL_CODE_FRAME_ERROR_FORMAT);
+        const dirPaths = this.cause?.dirPaths;
         return {
             level: 'resolution',
             // TODO: Add import stacks
@@ -172,8 +173,8 @@ class MetroPackageResolutionError extends MetroBuildError {
                 content: `Unable to resolve module ${this.targetModuleName}`,
                 substitutions: [],
             },
-            // @ts-ignore
-            isMissingModuleError: this.cause?.dirPaths ? this.targetModuleName : undefined,
+            // TODO: This doesn't work for initial bundling resolution errors (only for HMR)
+            isMissingModuleError: dirPaths ? this.targetModuleName : undefined,
             category: `${this.originModulePath}-${1}-${1}`,
         };
     }

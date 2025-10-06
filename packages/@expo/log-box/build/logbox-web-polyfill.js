@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const LogBoxLog_1 = require("./Data/LogBoxLog");
-const logbox_polyfill_dom_1 = __importDefault(require("./logbox-polyfill-dom"));
+const logbox_dom_polyfill_1 = __importDefault(require("./logbox-dom-polyfill"));
 exports.default = () => {
     const { logs, selectedLogIndex } = useLogsFromExpoStaticError();
-    return (react_1.default.createElement(logbox_polyfill_dom_1.default, { logs: logs, selectedIndex: selectedLogIndex, platform: 'web' }));
+    return (react_1.default.createElement(logbox_dom_polyfill_1.default, { logs: logs, selectedIndex: selectedLogIndex, platform: 'web' }));
 };
 function useLogsFromExpoStaticError() {
     if (process.env.EXPO_OS === 'web' && typeof window !== 'undefined') {

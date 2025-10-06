@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import { View, DevSettings, Platform, Clipboard, type Modal as ModalInterface} from 'react-native';
 
-import LogBoxPolyfillDOM from './logbox-polyfill-dom';
+import LogBoxPolyfillDOM from './logbox-dom-polyfill';
 
 // @ts-ignore
 import * as LogBoxData from 'react-native/Libraries/LogBox/Data/LogBoxData';

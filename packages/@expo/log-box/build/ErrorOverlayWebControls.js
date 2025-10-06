@@ -39,10 +39,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.presentGlobalErrorOverlay = presentGlobalErrorOverlay;
 exports.dismissGlobalErrorOverlay = dismissGlobalErrorOverlay;
 const react_1 = __importDefault(require("react"));
-const client_1 = __importDefault(require("react-dom/client"));
 const LogBoxData = __importStar(require("./Data/LogBoxData"));
 const ContextPlatform_1 = require("./ContextPlatform");
 const ContextActions_1 = require("./ContextActions");
+const render_1 = require("./render");
 let currentRoot = null;
 function presentGlobalErrorOverlay() {
     if (currentRoot) {
@@ -55,31 +55,9 @@ function presentGlobalErrorOverlay() {
             LogBoxData.setSelectedLog(-1);
         },
     }), { platform: process.env.EXPO_OS ?? 'web' }));
-    // Create a new div with ID `error-overlay` element and render LogBoxInspector into it.
-    const div = document.createElement('div');
-    div.id = 'error-overlay';
-    document.body.appendChild(div);
-    const shadowRoot = div.attachShadow({ mode: 'open' });
-    document.querySelectorAll('style').forEach(styleEl => {
-        const id = styleEl.id || 'unknown';
-        const moduleName = styleEl.getAttribute('data-expo-css-hmr');
-        const isLogBoxStyle = moduleName && moduleName.includes('expo_log_box');
-        const isReactNativeStyle = id === 'react-native-stylesheet';
-        if (isLogBoxStyle || isReactNativeStyle) {
-            shadowRoot.appendChild(styleEl.cloneNode(true));
-        }
-    });
-    const shadowContainer = document.createElement('div');
-    shadowRoot.appendChild(shadowContainer);
-    currentRoot = client_1.default.createRoot(shadowContainer);
-    currentRoot.render(react_1.default.createElement(ErrorOverlay));
+    currentRoot = (0, render_1.renderInShadowRoot)('error-overlay', react_1.default.createElement(ErrorOverlay));
 }
 function dismissGlobalErrorOverlay() {
-    // Remove div with ID `error-overlay`
-    if (currentRoot) {
-        currentRoot.unmount();
-        currentRoot = null;
-    }
-    const div = document.getElementById('error-overlay');
-    div?.remove();
+    currentRoot?.unmount();
+    currentRoot = null;
 }

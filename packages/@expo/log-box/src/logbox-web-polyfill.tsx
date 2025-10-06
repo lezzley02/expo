@@ -1,6 +1,6 @@
 import React from 'react';
 import { LogBoxLog, useLogs } from './Data/LogBoxLog';
-import LogBoxInspectorContainer from './logbox-polyfill-dom';
+import LogBoxInspectorContainer from './logbox-dom-polyfill';
 
 export default () => {
   const { logs, selectedLogIndex } = useLogsFromExpoStaticError();

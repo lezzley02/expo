@@ -15,7 +15,6 @@ import {
   openFileInEditor,
 } from '../devServerEndpoints';
 
-//@ts-expect-error unexpected css import by ts
 import styles from './ErrorCodeFrame.module.css';
 
 export function ErrorCodeFrame({

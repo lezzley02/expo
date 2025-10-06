@@ -38,7 +38,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const react_native_1 = require("react-native");
-const logbox_polyfill_dom_1 = __importDefault(require("./logbox-polyfill-dom"));
+const logbox_dom_polyfill_1 = __importDefault(require("./logbox-dom-polyfill"));
 // @ts-ignore
 const LogBoxData = __importStar(require("react-native/Libraries/LogBox/Data/LogBoxData"));
 // @ts-ignore
@@ -88,7 +88,7 @@ function LogBoxRNPolyfill(props) {
                 top: 0,
                 flex: 1,
             }, collapsable: false },
-            react_1.default.createElement(logbox_polyfill_dom_1.default, { platform: process.env.EXPO_OS, devServerUrl: (0, devServerEndpoints_1.getBaseUrl)(), dom: {
+            react_1.default.createElement(logbox_dom_polyfill_1.default, { platform: process.env.EXPO_OS, devServerUrl: (0, devServerEndpoints_1.getBaseUrl)(), dom: {
                     sourceOverride: bundledLogBoxUrl ? { uri: bundledLogBoxUrl } : undefined,
                     contentInsetAdjustmentBehavior: 'never',
                     containerStyle: {

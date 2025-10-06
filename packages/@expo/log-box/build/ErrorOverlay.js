@@ -53,9 +53,7 @@ const ErrorCodeFrame_1 = require("./overlay/ErrorCodeFrame");
 const ErrorOverlayHeader_1 = require("./overlay/ErrorOverlayHeader");
 const StackTraceList_1 = require("./overlay/StackTraceList");
 const devServerEndpoints_1 = require("./devServerEndpoints");
-// @ts-ignore TODO: add ts css plugin
 require("./ErrorGlobal.css");
-// @ts-ignore TODO: add ts css plugin
 const ErrorOverlay_module_css_1 = __importDefault(require("./ErrorOverlay.module.css"));
 const LogBoxMessage_1 = require("./LogBoxMessage");
 const ContextPlatform_1 = require("./ContextPlatform");

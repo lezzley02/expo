@@ -1,8 +1,12 @@
 {
-  "extends": "expo-module-scripts/tsconfig.base",
+  "extends": "expo-module-scripts/tsconfig.node",
   "compilerOptions": {
     "noEmit": true,
+    "jsx": "react",
+    "plugins": [
+      { "name": "typescript-plugin-css-modules" }
+    ]
   },
-  "include": ["./src", "./app"],
+  "include": ["src/**/*", "app/**/*"],
   "exclude": ["**/__mocks__/*", "**/__tests__/*"]
 }

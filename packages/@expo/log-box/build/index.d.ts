@@ -1,1 +1,1 @@
-export declare function useErrorToast(): void;
+export declare function useLogBox(): void;
