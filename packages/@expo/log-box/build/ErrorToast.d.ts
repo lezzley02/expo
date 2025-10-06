@@ -8,7 +8,7 @@
 import React from 'react';
 import * as LogBoxData from './Data/LogBoxData';
 import { LogBoxLog } from './Data/LogBoxLog';
-import './ErrorOverlay.css';
+import './ErrorGlobal.css';
 export declare function ErrorToastContainer(): React.JSX.Element | null;
 declare const _default: {
     new (props: object): {

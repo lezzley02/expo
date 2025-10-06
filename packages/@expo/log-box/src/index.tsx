@@ -1,23 +1,24 @@
 import React from 'react';
+import { renderInShadowRoot } from './render';
 
 if (process.env.NODE_ENV === 'development' && process.env.EXPO_OS === 'web') {
   // Stack traces are big with React Navigation
+  // TODO: Can this be part of the `useLogBox` hook? Or do we need install early?
   require('./LogBox').default.install();
 }
 
-export function withErrorOverlay(RootComponent: React.ComponentType<any>) {
+let isInstalled = false;
+
+export function useLogBox(): void {
   if (process.env.NODE_ENV === 'development' && process.env.EXPO_OS === 'web') {
-    const ErrorToastContainer = require('./ErrorToast')
+    if (isInstalled) {
+      return undefined;
+    }
+
+    const ErrorToast = require('./ErrorToast')
       .default as typeof import('./ErrorToast').default;
 
-    return function ErrorOverlay(props: any) {
-      return (
-        <ErrorToastContainer>
-          <RootComponent {...props} />
-        </ErrorToastContainer>
-      );
-    };
+    renderInShadowRoot('error-toast', React.createElement(ErrorToast));
+    isInstalled = true;
   }
-
-  return RootComponent;
 }

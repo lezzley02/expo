@@ -1,4 +1,5 @@
-html {
+/* Using :host to ensure styles only apply in Shadow DOM */
+:host {
   /* To stretch over the safe area in iOS */
   height: 100vh;
 }

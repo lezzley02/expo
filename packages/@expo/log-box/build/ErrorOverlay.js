@@ -39,8 +39,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LogBoxInspectorContainer = LogBoxInspectorContainer;
 exports.LogBoxInspector = LogBoxInspector;
 exports.LogBoxContent = LogBoxContent;
-exports.presentGlobalErrorOverlay = presentGlobalErrorOverlay;
-exports.dismissGlobalErrorOverlay = dismissGlobalErrorOverlay;
 /**
  * Copyright (c) 650 Industries.
  * Copyright (c) Meta Platforms, Inc. and affiliates.
@@ -54,10 +52,9 @@ const LogBoxLog_1 = require("./Data/LogBoxLog");
 const ErrorCodeFrame_1 = require("./overlay/ErrorCodeFrame");
 const ErrorOverlayHeader_1 = require("./overlay/ErrorOverlayHeader");
 const StackTraceList_1 = require("./overlay/StackTraceList");
-const client_1 = __importDefault(require("react-dom/client"));
 const devServerEndpoints_1 = require("./devServerEndpoints");
 // @ts-ignore TODO: add ts css plugin
-require("./ErrorOverlay.css");
+require("./ErrorGlobal.css");
 // @ts-ignore TODO: add ts css plugin
 const ErrorOverlay_module_css_1 = __importDefault(require("./ErrorOverlay.module.css"));
 const LogBoxMessage_1 = require("./LogBoxMessage");
@@ -317,33 +314,6 @@ function ShowMoreButton({ message, collapsed, onPress, }) {
             opacity: 0.7,
             fontSize: 14,
         }, onClick: onPress }, "... See more"));
-}
-let currentRoot = null;
-function presentGlobalErrorOverlay() {
-    if (currentRoot) {
-        return;
-    }
-    const ErrorOverlay = LogBoxData.withSubscription((0, ContextPlatform_1.withRuntimePlatform)((0, ContextActions_1.withActions)(LogBoxInspectorContainer, {
-        onMinimize: () => {
-            LogBoxData.setSelectedLog(-1);
-            LogBoxData.setSelectedLog(-1);
-        },
-    }), { platform: process.env.EXPO_OS ?? 'web' }));
-    // Create a new div with ID `error-overlay` element and render LogBoxInspector into it.
-    const div = document.createElement('div');
-    div.id = 'error-overlay';
-    document.body.appendChild(div);
-    currentRoot = client_1.default.createRoot(div);
-    currentRoot.render(react_1.default.createElement(ErrorOverlay));
-}
-function dismissGlobalErrorOverlay() {
-    // Remove div with ID `error-overlay`
-    if (currentRoot) {
-        currentRoot.unmount();
-        currentRoot = null;
-    }
-    const div = document.getElementById('error-overlay');
-    div?.remove();
 }
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ');

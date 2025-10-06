@@ -7,7 +7,7 @@
  */
 import React from 'react';
 import { LogBoxLog } from './Data/LogBoxLog';
-import './ErrorOverlay.css';
+import './ErrorGlobal.css';
 export declare function LogBoxInspectorContainer(): React.JSX.Element | null;
 export declare function LogBoxInspector({ log, selectedLogIndex, logs, }: {
     log: LogBoxLog;
@@ -21,5 +21,3 @@ export declare function LogBoxContent({ log, selectedLogIndex, logs, isDismissab
     isDismissable: boolean;
     onMinimize: (cb?: () => void) => void;
 }): React.JSX.Element;
-export declare function presentGlobalErrorOverlay(): void;
-export declare function dismissGlobalErrorOverlay(): void;

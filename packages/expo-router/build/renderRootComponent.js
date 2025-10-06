@@ -37,6 +37,7 @@ exports.renderRootComponent = renderRootComponent;
 const expo_1 = require("expo");
 const React = __importStar(require("react"));
 const react_native_1 = require("react-native");
+const log_box_1 = require("@expo/log-box");
 const SplashScreen = __importStar(require("./utils/splash"));
 function isBaseObject(obj) {
     if (Object.prototype.toString.call(obj) !== '[object Object]') {
@@ -78,18 +79,15 @@ function convertError(error) {
  */
 function renderRootComponent(Component) {
     try {
+        if (process.env.NODE_ENV !== 'production') {
+            (0, log_box_1.useLogBox)();
+        }
         // This must be delayed so the user has a chance to call it first.
         setTimeout(() => {
             SplashScreen._internal_preventAutoHideAsync?.();
         });
         React.startTransition(() => {
-            if (process.env.NODE_ENV !== 'production') {
-                const { withErrorOverlay } = require('@expo/metro-runtime/error-overlay');
-                (0, expo_1.registerRootComponent)(withErrorOverlay(Component));
-            }
-            else {
-                (0, expo_1.registerRootComponent)(Component);
-            }
+            (0, expo_1.registerRootComponent)(Component);
         });
     }
     catch (e) {

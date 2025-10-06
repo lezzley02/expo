@@ -1,5 +1,5 @@
-/* TODO: Ensure these don't end up in the user project in production. Maybe use :host */
-:root {
+/* Using :host to ensure styles only apply in Shadow DOM */
+:host {
   /* Some of these are based on UIKit colors in dark mode: https://github.com/EvanBacon/expo-apple-colors/blob/80f541c38c7fadcbd8a1fe85800eea0b3a97079b/colors.css#L1 */
   --expo-log-color-border: #313538;
   --expo-log-color-label: #edeef0;

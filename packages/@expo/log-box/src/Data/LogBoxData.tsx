@@ -276,9 +276,9 @@ export function setSelectedLog(proposedNewIndex: number): void {
 
   setTimeout(() => {
     if (oldIndex < 0 && newIndex >= 0) {
-      require('../ErrorOverlay').presentGlobalErrorOverlay();
+      require('../ErrorOverlayWebControls').presentGlobalErrorOverlay();
     } else if (oldIndex >= 0 && newIndex < 0) {
-      require('../ErrorOverlay').dismissGlobalErrorOverlay();
+      require('../ErrorOverlayWebControls').dismissGlobalErrorOverlay();
     }
   }, 0);
 }

@@ -14,17 +14,16 @@ import { ErrorCodeFrame, Terminal } from './overlay/ErrorCodeFrame';
 import { ErrorOverlayHeader } from './overlay/ErrorOverlayHeader';
 import { StackTraceList } from './overlay/StackTraceList';
 
-import ReactDOM from 'react-dom/client';
 import type { Message } from './Data/parseLogBoxLog';
 import { fetchProjectMetadataAsync, getFormattedStackTrace } from './devServerEndpoints';
 // @ts-ignore TODO: add ts css plugin
-import './ErrorOverlay.css';
+import './ErrorGlobal.css';
 // @ts-ignore TODO: add ts css plugin
 import styles from './ErrorOverlay.module.css';
 
 import { LogBoxMessage } from './LogBoxMessage';
-import { useRuntimePlatform, withRuntimePlatform } from './ContextPlatform';
-import { useActions, withActions } from './ContextActions';
+import { useRuntimePlatform } from './ContextPlatform';
+import { useActions } from './ContextActions';
 
 const HEADER_TITLE_MAP: Record<LogLevel, string> = {
   error: 'Console Error',
@@ -465,45 +464,6 @@ function ShowMoreButton({
       ... See more
     </button>
   );
-}
-
-let currentRoot: ReactDOM.Root | null = null;
-
-export function presentGlobalErrorOverlay() {
-  if (currentRoot) {
-    return;
-  }
-  const ErrorOverlay = LogBoxData.withSubscription(
-      withRuntimePlatform(
-        withActions(
-          LogBoxInspectorContainer,
-          {
-            onMinimize: () => {LogBoxData.setSelectedLog(-1);
-              LogBoxData.setSelectedLog(-1);
-            },
-          }
-        ),
-        { platform: process.env.EXPO_OS ?? 'web' }
-      )
-    );
-
-  // Create a new div with ID `error-overlay` element and render LogBoxInspector into it.
-  const div = document.createElement('div');
-  div.id = 'error-overlay';
-  document.body.appendChild(div);
-
-  currentRoot = ReactDOM.createRoot(div);
-  currentRoot.render(React.createElement(ErrorOverlay));
-}
-
-export function dismissGlobalErrorOverlay() {
-  // Remove div with ID `error-overlay`
-  if (currentRoot) {
-    currentRoot.unmount();
-    currentRoot = null;
-  }
-  const div = document.getElementById('error-overlay');
-  div?.remove();
 }
 
 function classNames(...classes: (string | undefined | false | null)[]) {

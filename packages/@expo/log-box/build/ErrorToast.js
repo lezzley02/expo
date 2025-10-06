@@ -46,26 +46,12 @@ const LogBoxData = __importStar(require("./Data/LogBoxData"));
 const LogBoxLog_1 = require("./Data/LogBoxLog");
 const react_native_1 = require("react-native");
 const LogBoxMessage_1 = require("./LogBoxMessage");
-require("./ErrorOverlay.css");
+require("./ErrorGlobal.css");
 const ContextPlatform_1 = require("./ContextPlatform");
 const ContextActions_1 = require("./ContextActions");
-// import * as FIXTURES from '@expo/metro-runtime/fixtures/log-box-error-fixtures';
 function ErrorToastContainer() {
     useRejectionHandler();
     const { logs, isDisabled } = (0, LogBoxLog_1.useLogs)();
-    // HACK / DEBUG / TESTING / NOSHIP: This is here to develop the UI for the error overlay.
-    // DO NOT SHIP TO PROD!
-    // React.useEffect(() => {
-    //   // Open the UI for the last log
-    //   LogBoxData.setSelectedLog(0);
-    //   LogBoxData._appendNewLog(FIXTURES.component_error_thrown_in_render[0]);
-    //   // Object.values(FIXTURES)
-    //   //   .flat()
-    //   //   .filter((log) => log.level !== 'syntax')
-    //   //   .map((log) => {
-    //   //     LogBoxData._appendNewLog(log);
-    //   //   });
-    // }, []);
     if (!logs.length || isDisabled) {
         return null;
     }

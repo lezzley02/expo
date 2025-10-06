@@ -2,7 +2,11 @@
 
 import spawn from '@expo/spawn-async';
 import { rm, rename, glob } from 'fs/promises';
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const outputLogBoxBundle = 'ExpoLogBox.bundle';
 const defaultDomComponentsBundle = 'www.bundle';
@@ -14,7 +18,16 @@ await rm(outputDir, { recursive: true, force: true });
 
 const result = await spawn(
   'yarn',
-  ['expo', 'export:embed', '--platform', 'android', '--bundle-output', appBundlePath],
+  [
+    'expo',
+    'export:embed',
+    '--platform',
+    'android',
+    '--bundle-output',
+    appBundlePath,
+    '--entry-file',
+    join(__dirname, '../app/index.ts'),
+  ],
   { stdio: 'inherit' }
 );
 

@@ -4,7 +4,8 @@ import { ScrollView, Text, View } from 'react-native';
 import * as hmr_fixtures from '@expo/metro-runtime/fixtures/hmr-fixtures';
 // TODO: How to import for testing?
 // import HMRClient from 'expo/build/async-require/hmr';
-// import './foobar';
+// import 'foobar';
+import { DomButton } from './DomButton';
 
 // eval('clasfs Foo {}');
 
@@ -58,6 +59,15 @@ export default function App() {
         title="console.error: Error"
         onPress={() => {
           console.error(new Error('Hello'));
+        }}
+      />
+      <DomButton
+        title="console.error: Error (DOM)"
+        onPress={() => {
+          console.error(new Error('Hello from DOM'));
+        }}
+        dom={{
+          useExpoDOMWebView: true,
         }}
       />
 

@@ -1,7 +1,7 @@
 {
   "name": "@expo/log-box",
   "version": "0.0.13",
-  "main": "app/index.ts",
+  "main": "src/index.tsx",
   "scripts": {
     "start": "expo",
     "clean": "run-p clean:lib clean:bundle",
